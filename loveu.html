@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Una preguntita importante...</title>
+
+  <style>
+    body {
+       /*FONDO CON DEGRADADO*/
+      background: linear-gradient(135deg, #9b81b6 0%, #8896a3 100%);
+      font-family: 'Comic Sans MS', 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      flex-direction: column;
+      text-align: center;
+      color: #4a4a4a;
+    }
+
+    .contenedor {
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 90%;
+    }
+
+    h1 {
+      color: #6b5b95;
+      font-size: 1.8em;
+      margin-bottom: 20px;
+    }
+
+    input {
+      padding: 12px;
+      font-size: 16px;
+      border: 2px solid #b19cd9;
+      border-radius: 25px;
+      margin-top: 10px;
+      width: 80%;
+      text-align: center;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      border-color: #8ec5fc;
+      box-shadow: 0 0 10px rgba(142, 197, 252, 0.5);
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 30px;
+      background-color: #9d84b7;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background-color 0.3s, transform 0.1s;
+    }
+
+    button:hover {
+      background-color: #7b629a;
+      transform: scale(1.05);
+    }
+
+    #resultado {
+      display: none; /* Oculto al inicio */
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #resultado h1 {
+      color: #ff6f91;
+    }
+
+    #resultado img {
+      width: 100%;
+      max-width: 280px;
+      border-radius: 15px;
+      margin-top: 15px;
+      pointer-events: none;
+    }
+
+    #mensajeError {
+      color: #d9534f;
+      margin-top: 15px;
+      font-size: 14px;
+      font-weight: bold;
+      min-height: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="contenedor" id="preguntaDiv">
+    <h1>¿Su corazoncito me sigue amando estando allá? ❤️ </h1>
+    <input type="text" id="respuesta" placeholder="Escriba su respuesta aquí..." autocomplete="off" />
+    <br />
+    <button onclick="verificarRespuesta()">Responder</button>
+    <div id="mensajeError"></div>
+  </div>
+
+  <div class="contenedor" id="resultado">
+    <h1>¡Mi panquesito de nuez, por acá también lo sigo amando! 💕🐻</h1>
+
+    <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXNhZ3JoenRvZHh6eXV1d3Ezb3ZydGd4M204dmtycmM2MXgwc2V6aCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/A0Zt7yuDULiy4ofmVD/giphy.gif" alt="gatito abrazando" />
+  </div>
+
+  <script>
+    function verificarRespuesta() {
+      //Capturo lo que escribió.
+      let respuestaUser = document.getElementById("respuesta").value.trim().toLowerCase();
+      const mensajeError = document.getElementById("mensajeError");
+
+      //Limpia el error.
+      mensajeError.textContent = "";
+
+      //Opciones de respuesta.
+      const opcionesCorrectas = ["ti", "si, mi bibi", "si mi amore", "si, mi amorcito", "si mi wiwi", "si mi gata",];
+
+      if (opcionesCorrectas.includes(respuestaUser)) {
+        //Si acierta, ocultamos la pregunta y mostramos la sorpresa
+        document.getElementById("preguntaDiv").style.display = "none";
+        document.getElementById("resultado").style.display = "flex";
+      } else {
+        //Si se equivoca, le mostramos este mensaje
+        mensajeError.textContent = "Mmm... piénsalo bien, esa no es la respuesta correcta 🤨💔";
+        
+        //Efecto visual: vaciar el cuadro de texto para que vuelva a intentar
+        document.getElementById("respuesta").value = "";
+      }
+    }
+  </script>
+
+</body>
+</html>
